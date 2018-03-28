@@ -11,12 +11,12 @@ script:
                                          python wait_for_postgres.py &&
                                          python manage.py test"
 
-#after_success:
-#  - if [ "$TRAVIS_BRANCH" == "master" ]; then
-#    docker login --username=_ --password="$HEROKU_AUTH_TOKEN" registry.heroku.com;
-#    docker tag web registry.heroku.com/ramble-prod/web;
-#    docker push registry.heroku.com/ramble-prod/web;
-#    fi
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker login --username=_ --password="$HEROKU_AUTH_TOKEN" registry.heroku.com;
+    docker tag web registry.heroku.com/ramble-prod/web;
+    docker push registry.heroku.com/ramble-prod/web;
+    fi
 #  - if [ "$TRAVIS_BRANCH" == "qa" ]; then
 #    docker login --username=_ --password="$HEROKU_AUTH_TOKEN" registry.heroku.com;
 #    docker tag web registry.heroku.com/ramble-qa/web;
@@ -25,6 +25,8 @@ script:
 
 notifications:
   email: false
-
 cache:
   pip: true
+env:
+  global:
+    secure: oN35teSh1S74VARJoAUksxAT5EeYi16Y9x0UW1bTTT4qnyTEYYSNGfYjH4X91ZOK7gUXMV/Nn89/koJVU2ev3Zn4D9TFTlr8G449o7RyD0ePSI7qUMhiAe+ssl6NuCJBpxYSl0MmN0Z+132HoF3mA214nVyUUfibHo+z/60O91oV5L7T2hqOSe2vG136t/vDE6QJK4qaGDOUHkLYzYAReHUpAiS/9Gy2B+7tNfRkjtWMnOjqvPkIS4Ghj8dsewjWTPad6rNFFUsVWV+B37uaYOKVRYtkRwVk4N/vmSbaH3xyAwBBVTJqobPgibSGYHUYALrvMKPGDLG+5+33yGJNKFGXPmw+aCu996a1CxhDKnsI69WD2UNf+CaCT2xRpWfnxj4oSAQ36cyyxWBddaSAG5spMiWO3fRlbTQ7lHN579Y3DGQe+ZiIQFWr7Ki2kqMqSIRFPB9LK5jWtRo2M+6Ycdq+ISl/xHTDnHvGxkCA5zhuyp7Vftd9dIlgEmjn5jzW/fMiwIpCp1rQs0iHjvFVRkSRlZ3NB0eZpkIaOKzDxl5AEu6+OT9eSHvKnwPZ1He0g+S3G0zwmCY/i19LqMuOcmq5XycCu1qH0GnWyj221GOEtfDaZ/o30YSaBgqKNtOGlzCYmf/wL85tic9UPYyCXsWj+6iZd4Q8LJi3MnqunfQ=
