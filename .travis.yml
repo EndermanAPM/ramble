@@ -13,7 +13,7 @@ script:
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_SECURE_ENV_VARS" == "true" ] ; then
-    docker login -u "_" -p "$HEROKU_AUTH_TOKEN" registry.heroku.com;
+    docker login -u _ -p $HEROKU_AUTH_TOKEN registry.heroku.com;
     docker tag web registry.heroku.com/ramble-prod/web;
     docker push registry.heroku.com/ramble-prod/web;
     fi
