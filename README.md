@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/EndermanAPM/ramble_rest.svg?branch=master)](https://travis-ci.org/EndermanAPM/ramble_rest)
 [![Built with](https://img.shields.io/badge/Built_with-Cookiecutter_Django_Rest-F7B633.svg)](https://github.com/agconti/cookiecutter-django-rest)
+[![Updates](https://pyup.io/repos/github/EndermanAPM/ramble_rest/shield.svg)](https://pyup.io/repos/github/EndermanAPM/ramble_rest/)
+
 
 Foo bar. Check out the project's [documentation](http://endermanapm.github.io/ramble_rest/).
 
