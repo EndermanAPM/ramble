@@ -3,7 +3,7 @@ language: python
 services:
   - docker
 python:
-  - "3.6"
+  - '3.6'
 before_script:
   - docker-compose build
 script:
@@ -13,11 +13,10 @@ script:
 
 after_success:
   - docker-compose run --rm -e TRAVIS=$TRAVIS -e TRAVIS_JOB_ID=$TRAVIS_JOB_ID web bash -c "coveralls"
-  - if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_SECURE_ENV_VARS" == "true" ] ; then
-    docker login -u _ -p $HEROKU_AUTH_TOKEN registry.heroku.com;
-    docker tag web registry.heroku.com/ramble-prod/web;
-    docker push registry.heroku.com/ramble-prod/web;
-    fi
+  - if [ "$TRAVIS_BRANCH" != "master" ]; then 
+    docker login --username=_ --password="$HEROKU_AUTH_TOKEN" registry.heroku.com; 
+    docker tag web registry.heroku.com/ramble-prod/web; 
+    docker push registry.heroku.com/ramble-prod/web; fi
 #  - if [ "$TRAVIS_BRANCH" == "qa" ]; then
 #    docker login --username=_ --password="$HEROKU_AUTH_TOKEN" registry.heroku.com;
 #    docker tag web registry.heroku.com/ramble-qa/web;
@@ -30,4 +29,4 @@ cache:
   pip: true
 env:
   global:
-    secure: oN35teSh1S74VARJoAUksxAT5EeYi16Y9x0UW1bTTT4qnyTEYYSNGfYjH4X91ZOK7gUXMV/Nn89/koJVU2ev3Zn4D9TFTlr8G449o7RyD0ePSI7qUMhiAe+ssl6NuCJBpxYSl0MmN0Z+132HoF3mA214nVyUUfibHo+z/60O91oV5L7T2hqOSe2vG136t/vDE6QJK4qaGDOUHkLYzYAReHUpAiS/9Gy2B+7tNfRkjtWMnOjqvPkIS4Ghj8dsewjWTPad6rNFFUsVWV+B37uaYOKVRYtkRwVk4N/vmSbaH3xyAwBBVTJqobPgibSGYHUYALrvMKPGDLG+5+33yGJNKFGXPmw+aCu996a1CxhDKnsI69WD2UNf+CaCT2xRpWfnxj4oSAQ36cyyxWBddaSAG5spMiWO3fRlbTQ7lHN579Y3DGQe+ZiIQFWr7Ki2kqMqSIRFPB9LK5jWtRo2M+6Ycdq+ISl/xHTDnHvGxkCA5zhuyp7Vftd9dIlgEmjn5jzW/fMiwIpCp1rQs0iHjvFVRkSRlZ3NB0eZpkIaOKzDxl5AEu6+OT9eSHvKnwPZ1He0g+S3G0zwmCY/i19LqMuOcmq5XycCu1qH0GnWyj221GOEtfDaZ/o30YSaBgqKNtOGlzCYmf/wL85tic9UPYyCXsWj+6iZd4Q8LJi3MnqunfQ=
+  - secure: dm7WD7fEriCkQt3751G3thxFbJtVUeh4UaV55lvtQQz6IGYrxHpvutZpcrpH18vOTJYRJfgio2aiOi77Adt0Oc+RRN1FHcMbvgAoem5ecm98AZqinwKS4oWTX/KueWBSokM9XS3Qs0vKzwEpCJLQPgZ0OlLPrjL+gREQ0x5VsqIl+fBUNj9NuNDRk7o607bi8h9jr3BGAlSCgK5v0WdIynqiHOsqmXVAiUO1vKdeSzgo1FpJBoIsQ/rqE0j83bajiA4sYc2uNDBQoSKxdhTp2ztEEd0SyxXt52BBS5ShWZzboidvM8h5ampVY8GbxPoS0axQFwBiywmYVLck6P5g0Bl1402HL38X8eYQMMX3Z8FAq/ymUE338YOkD0mqeF/aSyQTmr4CwCwAe/8h43dPPUIssDE3OwFF4MXkE4Trx7dgH3hyAhaeDS62JomBUta5FOcgJKmQPzbKBwMohQUUKYZq0P3n3XFegaeSHIgYmHSdRXh6MYrcRMsPyPhYsIg2snWw9PnOVwPbi5Gl9teoBn9G6zC3YZD1TVkjBV88g08fMgweryIhbk+85O9whMKR5ChVIHRZDgZH2VIWvu19D65M1IhLkibY21dS+ppLlLyjx+XqmlETxtp/xP6H5vkSMjpVDFX8XYBu8fPHcuNkjtVGAf6nB3ew7UUo7BjAFQ0=
